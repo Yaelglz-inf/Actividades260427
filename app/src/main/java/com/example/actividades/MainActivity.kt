@@ -1,11 +1,14 @@
 package com.example.actividades
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.actividades.databinding.ActivityMainBinding
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,5 +26,33 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+
+
+        binding.btnSend.setOnClickListener {
+
+            val bundle = Bundle().apply{
+
+                putString("USER_NAME",binding.textName.text.toString())
+                putInt("USER_AGE",50)
+                putBoolean("IS_STUDENT", true)
+
+            }
+
+            val intent = Intent(this, SecondaryActivity::class.java).apply {
+
+                putExtra("USER_NAME",binding.textName.text.toString())
+
+
+                putExtras(bundle)
+
+            }
+
+            startActivity(intent)
+
+
+        }
+
+
     }
 }
